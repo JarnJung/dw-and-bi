@@ -27,7 +27,7 @@
 | create_at | text |
 
 ## การทำงาน 
-    - ไฟล์ etl.py จะทำการอ่านข้อมูลจาก Data files ทั้งหมดใน Folder data จากนั้นจะทำสกัดข้อมูลของแต่ละ event โดยจะทำการเก็บข้อมูลของ Attribute ตามตารางของ actors และ events
+ไฟล์ etl.py จะทำการอ่านข้อมูลจาก Data files ทั้งหมดใน Folder data จากนั้นจะทำสกัดข้อมูลของแต่ละ event โดยจะทำการเก็บข้อมูลของ Attribute ตามตารางของ actors และ events
 
 ## Getting Started
 
