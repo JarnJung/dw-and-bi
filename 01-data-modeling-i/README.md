@@ -5,7 +5,7 @@
     -- docker-compose.yml
     -- create_table.py
     -- etl.py
-#### โฟลเดอร์ data จัดเก็บไฟล์ข้อมูลก่อนการทำ ETL
+#### โฟลเดอร์ data จัดเก็บ Data files ในรูปแบบของ .json ก่อนการทำ ETL
 
 ## โครงสร้างฐานข้อมูล
 #### ฐานข้อมูลประกอบด้วย ตาราง 2 ตาราง
@@ -25,6 +25,9 @@
 | actor_id (FK) | int |
 | respo | text |
 | create_at | text |
+
+## การทำงาน 
+    - ไฟล์ etl.py จะทำการอ่านข้อมูลจาก Data files ทั้งหมดใน Folder data จากนั้นจะทำสกัดข้อมูลของแต่ละ event โดยจะทำการเก็บข้อมูลของ Attribute ตามตารางของ actors และ events
 
 ## Getting Started
 
