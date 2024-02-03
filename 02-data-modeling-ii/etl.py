@@ -73,6 +73,15 @@ def process(session, filepath):
                 print(each["id"], each["type"], each["actor"]["login"])
 
                 # Insert data into tables here
+                insert_data(each, session)
+
+
+def insert_data(data, session):
+    query = f"""
+    INSERT INTO events (id, type, public) VALUES ('{data["id"]}', '{data["type"]}', {data["public"]})
+    """
+    session.execute(query)
+
 
 
 def insert_sample_data(session):
@@ -106,8 +115,8 @@ def main():
     drop_tables(session)
     create_tables(session)
 
-    # process(session, filepath="../data")
-    insert_sample_data(session)
+    process(session, filepath="../data")
+    #insert_sample_data(session)
 
     # Select data in Cassandra and print them to stdout
     query = """
