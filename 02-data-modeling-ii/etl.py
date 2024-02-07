@@ -12,7 +12,12 @@ table_create = """
     (
         id text,
         type text,
+        repo_id int,
+        repo_url text,
+        actor_id int,
+        login text,
         public boolean,
+        created_at text,
         PRIMARY KEY (
             id,
             type
@@ -77,7 +82,25 @@ def process(session, filepath):
 
 def insert_data(data, session):
     query = f"""
-    INSERT INTO events (id, type, public) VALUES ('{data["id"]}', '{data["type"]}', {data["public"]})
+    INSERT INTO events (
+        id, 
+        type, 
+        repo_id, 
+        repo_url, 
+        actor_id, 
+        login, public,
+        created_at
+        ) 
+    VALUES 
+    ('{data["id"]}',
+    '{data["type"]}', 
+    {data["repo"]["id"]},
+    '{data["repo"]["url"]}',
+    {data["actor"]["id"]},
+    '{data["actor"]["display_login"]}',
+    {data["public"]},
+    '{data["created_at"]}'
+    )
     """
     session.execute(query)
 
