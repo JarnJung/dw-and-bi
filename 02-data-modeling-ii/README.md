@@ -1,9 +1,8 @@
 # Data Modeling II
 
 ## โครงสร้างไฟล์ ประกอบด้วย
-#### โฟลเดอร์ 01-data-modeling-i : จัดเก็บไฟล์ code สำหรับสร้างตารางในฐานข้อมูล และ สำหรับ ETL จาก Data files เข้าไปในฐานข้อมูล
-    -- docker-compose.yml
-    -- create_table.py
+#### โฟลเดอร์ 02-data-modeling-ii : จัดเก็บไฟล์ code สำหรับสร้างตารางในฐานข้อมูล และ สำหรับ ETL จาก Data files เข้าไปในฐานข้อมูล
+    -- docker-compose.yml 
     -- etl.py
 #### โฟลเดอร์ ../data จัดเก็บ Data files ในรูปแบบของ .json ก่อนการทำ ETL
 
