@@ -1,18 +1,20 @@
 # Data Modeling II
+    ในโปรเจ็กต์นี้จะเป็นการทำ ETL ของข้อมูลในรูปแบบของ json ไฟล์ แล้ว สกัดนำเอาข้อมูลที่่ต้องการวิเคราะห์ ไปจัดเก็บไว้ในฐานข้อมูลประเภท NoSQL โดยเลือกใช้ฐานข้อมูล Apache Cassandra เพื่อจัดเก็บข้อมูล
 
 ## โครงสร้างไฟล์ ประกอบด้วย
-#### โฟลเดอร์ 02-data-modeling-ii : จัดเก็บไฟล์ code สำหรับสร้างตารางในฐานข้อมูล และ สำหรับ ETL จาก Data files เข้าไปในฐานข้อมูล
+#### โฟลเดอร์ 02-data-modeling-ii : จัดเก็บไฟล์ code สำหรับ ETL จาก Data files เข้าไปในฐานข้อมูล
+    -- requirement.txt
     -- docker-compose.yml  
     -- etl.py
-    -- README.md
-    -- requirement.txt
+    -- README.md    
+    -- select_data.py
 
 #### โฟลเดอร์ ../data จัดเก็บ Data files ในรูปแบบของ .json ก่อนการทำ ETL
 
 ## การทำงาน 
-ไฟล์ etl.py จะทำการอ่านข้อมูลจาก Data files ทั้งหมดใน Folder ../data จากนั้นจะทำสกัดข้อมูลของแต่ละ event โดยจะทำการเก็บข้อมูลของแต่ละ event ตาม attribute ดังนี้
+ไฟล์ etl.py จะทำการอ่านข้อมูลจาก Data files ทั้งหมดใน Folder ../data จากนั้นจะทำสกัดข้อมูลของแต่ละ event จากรูปแบบของ  ๋json โดยจะทำการเก็บข้อมูลของแต่ละ event ตาม column ดังนี้
 
-|Attribute|Data Type|
+|column|Data Type|
 |:------------|:---------------:|
 |id|int|
 |type|text|
