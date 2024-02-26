@@ -36,13 +36,13 @@ def main(dataset_id, table_id, file_path):
     # keyfile = os.environ.get("KEYFILE_PATH")
     #
     # แต่เพื่อความง่ายเราสามารถกำหนด File Path ไปได้เลยตรง ๆ
-    keyfile = "YOUR_KEYFILE_PATH"
+    keyfile = "../credentials/ds525-03-building-dw-1b2a67f471c3.json"
     service_account_info = json.load(open(keyfile))
     credentials = service_account.Credentials.from_service_account_info(service_account_info)
 
     # โค้ดส่วนนี้จะเป็นการสร้าง Client เชื่อมต่อไปยังโปรเจค GCP ของเรา โดยใช้ Credentials ที่
     # สร้างจากโค้ดข้างต้น
-    project_id = "YOUR_GCP_PROJECT"
+    project_id = "ds525-03-building-dw"
     client = bigquery.Client(
         project=project_id,
         credentials=credentials,
@@ -57,6 +57,12 @@ def main(dataset_id, table_id, file_path):
         schema=[
             bigquery.SchemaField("id", bigquery.SqlTypeNames.STRING),
             bigquery.SchemaField("type", bigquery.SqlTypeNames.STRING),
+            bigquery.SchemaField("repo_id", bigquery.SqlTypeNames.INT64),
+            bigquery.SchemaField("repo_url", bigquery.SqlTypeNames.STRING),
+            bigquery.SchemaField("actor_id", bigquery.SqlTypeNames.INT64),
+            bigquery.SchemaField("login", bigquery.SqlTypeNames.STRING),
+            bigquery.SchemaField("public", bigquery.SqlTypeNames.BOOL),
+            bigquery.SchemaField("created_at", bigquery.SqlTypeNames.STRING),
         ],
     )
 
@@ -79,10 +85,21 @@ if __name__ == "__main__":
     with open("github_events.csv", "w") as csv_file:
         writer = csv.writer(csv_file)
 
+        #write header
+        writer.writerow(["id", "type", "repo_id", "repo_url", "actor_id", "login", "public", "created_at"])
+
         for datafile in all_files:
             with open(datafile, "r") as f:
                 data = json.loads(f.read())
                 for each in data:
-                    writer.writerow([each["id"], each["type"]])
+                    writer.writerow(
+                        [each["id"], 
+                        each["type"],
+                        each["repo"]["id"],
+                        each["repo"]["url"],
+                        each["actor"]["id"],
+                        each["actor"]["display_login"],
+                        each["public"],
+                        each["created_at"]])
 
-    main(dataset_id, table_id, file_path)
+    main(dataset_id = "github", table_id = "events", file_path = "github_events.csv")
