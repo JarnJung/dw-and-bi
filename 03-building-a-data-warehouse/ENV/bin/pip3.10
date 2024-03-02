@@ -1,4 +1,4 @@
-#!/workspaces/dw-and-bi/03-building-a-data-warehourse/ENV/bin/python
+#!/workspaces/dw-and-bi/03-building-a-data-warehouse/ENV/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
